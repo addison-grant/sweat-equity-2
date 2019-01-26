@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/House.css';
+import './House.css';
 class House extends React.Component {
   render() {
     const columns = [...Array(this.props.numColumns).keys()];
