@@ -1,31 +1,24 @@
 import React from 'react';
 import '../css/House.css';
-
 class House extends React.Component {
-  renderCell() {
-    return (
-      <td className='House-cell'>A</td>
-    );
-  }
-
-  renderRow() {
-    return (
-      <tr className='House-row'>
-        {this.renderCell()}
-        {this.renderCell()}
-        {this.renderCell()}
-      </tr>
-    );
-  }
-
   render() {
+    const columns = [...Array(this.props.numColumns).keys()];
+    const rows = [...Array(this.props.numRows).keys()];
     return (
-      <table className='House-building'>
-        {this.renderRow()}
-        {this.renderRow()}
-        {this.renderRow()}
-      </table>
-    )
+      <div className='House-plot'>
+        <table className='House-main'>
+          <tbody>
+            {rows.map((rowKey) =>
+              <tr key={rowKey}>
+                {columns.map((columnKey) =>
+                  <td key={columnKey} className='House-cell'></td>
+                )}
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
