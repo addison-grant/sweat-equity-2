@@ -33,4 +33,5 @@
 .Sink {
   background-color: blue;
   color: white;
+  user-select: none;
 }
