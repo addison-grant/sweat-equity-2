@@ -5,6 +5,7 @@ import Sink from './Sink.js';
 import Stove from './Stove.js';
 import Toilet from './Toilet.js';
 import Empty from './Empty.js';
+import Dog from './Dog.js';
 
 class House extends React.Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class House extends React.Component {
     addItem(5, 7, Sink);
     addItem(3, 0, Toilet);
     addItem(2, 0, Sink);
+    addItem(5, 3, Dog);
   }
 
   render() {
