@@ -23,9 +23,9 @@ class Sink extends Component {
           SinkImg1
         ]}
         stateTransitionTimes={[
-          10,
-          3,
-          5
+          15,
+          15,
+          15
         ]}
         {...this.props}
       />

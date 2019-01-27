@@ -23,9 +23,9 @@ class Toilet extends Component {
           ToiletImg1
         ]}
         stateTransitionTimes={[
+          5,
           10,
-          3,
-          5
+          15
         ]}
         {...this.props}
       />

@@ -23,9 +23,9 @@ class Stove extends Component {
           Stove1
         ]}
         stateTransitionTimes={[
-          15,
           10,
-          10
+          10,
+          20
         ]}
         {...this.props}
       />

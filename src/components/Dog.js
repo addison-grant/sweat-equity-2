@@ -20,9 +20,8 @@ class Dog extends Component {
           Dog1
         ]}
         stateTransitionTimes={[
-          30,
-          30,
-          15
+          20,
+          20
         ]}
         {...this.props}
       />
