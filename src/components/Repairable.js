@@ -24,7 +24,7 @@ class Repairable extends Component {
       });
       if (newAge > this.state.nextStateAge) {
         this.setState({
-          nextStateAge: this.state.nextStateAge + 10
+          nextStateAge: this.state.nextStateAge + this.props.nextStateAge
         });
         if (this.state.condition > 0) {
           this.setState({
