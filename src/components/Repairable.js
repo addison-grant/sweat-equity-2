@@ -10,9 +10,9 @@ class Repairable extends Component {
       age: 0
     }
 
-    this.state.nextStateAge = this.props.stateTransitionTimes[this.state.condition - 1];
-
+    this.state.nextStateAge = this.getTransitionTime(this.state.condition);
     this.handleClick = this.handleClick.bind(this);
+    this.getTransitionTime = this.getTransitionTime.bind(this);
 
     setInterval(() => {
       const newDate = new Date();
@@ -23,8 +23,7 @@ class Repairable extends Component {
       });
       if (newAge > this.state.nextStateAge && this.state.condition > 0) {
         const nextCondition = this.state.condition - 1;
-        // Yes, -1 twice.
-        const nextTransitionTime = this.props.stateTransitionTimes[nextCondition - 1];
+        const nextTransitionTime = this.getTransitionTime(nextCondition);
         this.setState({
           nextStateAge: this.state.age + nextTransitionTime,
           condition: nextCondition
@@ -35,13 +34,23 @@ class Repairable extends Component {
     this.updateScore();
   }
 
+  getTransitionTime(condition) {
+    if (this.props.stateTransitionTimes.length === 0
+     || condition < 1) {
+      return 0;
+    }
+    const rand = Math.random() + 0.5;
+    const base = this.props.stateTransitionTimes[condition - 1];
+    return Math.round(rand * base);
+  }
+
   updateScore() {
     this.props.updateScore(this.getCondition(), this.getMaxPossibleCondition());
   }
 
   handleClick() {
     const nextCondition = this.props.conditions.length - 1;
-    const nextTransitionTime = this.props.stateTransitionTimes[nextCondition - 1];
+    const nextTransitionTime = this.getTransitionTime(nextCondition);
     this.setState({
       nextStateAge: this.state.age + nextTransitionTime,
       condition: nextCondition
@@ -57,16 +66,22 @@ class Repairable extends Component {
   }
 
   render() {
-    return (
-      <div className={this.props.displayName}
-        onClick={this.handleClick}
-        style={{backgroundImage: `url(${this.props.stateImages[this.state.condition]})`}}
-      >
+    /*
+    const printDebugInfo = () => (
+      <div>
         {this.props.displayName}
         <br />
         Age: {this.state.age}
         <br />
         {this.props.conditions[this.state.condition]}
+      </div>
+    )
+    */
+    return (
+      <div className={this.props.displayName}
+        onClick={this.handleClick}
+        style={{backgroundImage: `url(${this.props.stateImages[this.state.condition]})`}}
+      >
       </div>
     );
   }

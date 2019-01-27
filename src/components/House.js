@@ -42,9 +42,12 @@ class House extends React.Component {
       }
     }
 
-    addItem(2, 2, Sink);
-    addItem(2, 4, Stove);
-    addItem(3, 7, Toilet);
+    addItem(0, 4, Sink);
+    addItem(0, 5, Stove);
+    addItem(4, 7, Toilet);
+    addItem(5, 7, Sink);
+    addItem(3, 0, Toilet);
+    addItem(2, 0, Sink);
   }
 
   render() {
