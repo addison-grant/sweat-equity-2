@@ -81,15 +81,31 @@ class House extends React.Component {
     });
     const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
 
-    const displayScore = Math.round(10 * (score / maxPossibleScore)) / 2;
+    const displayScoreInt = Math.round(10 * (score / maxPossibleScore));
+    const messages = [
+      "CONDEMNED",
+      "Extreme health hazard",
+      "Hovel",
+      "Smells disgusting",
+      "Shack of garbage",
+      "Fixer-upper",
+      "It's got potential",
+      "Messy but manageable",
+      "Lived in",
+      "It has curb appeal!",
+      "Could be in a magazine!",
+    ];
+    const displayScore = messages[displayScoreInt];
+
     const rowKeys = Object.keys(this.state.items);
+
     return (
       <div className='House-plot'>
         <div className='House-title'>
           Sweat Equity
         </div>
         <div className='House-score'>
-          House Quality: {displayScore} Stars
+          House Quality: {displayScore}
           <br/>
           {this.state.repairCount} repairs in {age} seconds
         </div>
