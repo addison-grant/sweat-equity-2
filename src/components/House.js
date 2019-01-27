@@ -23,8 +23,8 @@ class House extends React.Component {
       function updateScore(score, maxPossibleScore) {
         const key = row + "-" + column;
         const tmpState = {
-          scores: {},
-          maxScores: {}
+          scores: that.state.scores,
+          maxScores: that.state.maxScores,
         };
         tmpState.scores[key] = score;
         tmpState.maxScores[key] = maxPossibleScore;

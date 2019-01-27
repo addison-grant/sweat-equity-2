@@ -9,7 +9,6 @@ class Stove extends Component {
         conditions={[
           'Working'
         ]}
-        nextStateAge={10}
         displayName='Stove'
         stateImages={[
           StoveGif
