@@ -17,12 +17,16 @@ class Sink extends Component {
         ]}
         nextStateAge={10}
         displayName='Sink'
-        image={SinkImg1}
         stateImages={[
           SinkImg1,
           SinkImg2,
           SinkImg3,
           SinkImg4,
+        ]}
+        stateTransitionTimes={[
+          10,
+          3,
+          5
         ]}
         {...this.props}
       />

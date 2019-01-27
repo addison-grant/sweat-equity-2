@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 class Repairable extends Component {
   constructor(props) {
     super(props);
-    this.stateImages = this.props.stateImages;
     this.state = {
-      image: this.props.stateImages[this.props.conditions.length - 1],
       condition: this.props.conditions.length - 1,
       startDate: new Date(),
       currentDate: new Date(),
@@ -13,7 +11,9 @@ class Repairable extends Component {
       nextStateAge: this.props.nextStateAge
     }
 
-    this.potato = this.potato.bind(this);
+    this.state.nextStateAge = this.props.stateTransitionTimes[this.state.condition - 1];
+
+    this.handleClick = this.handleClick.bind(this);
 
     setInterval(() => {
       const newDate = new Date();
@@ -22,29 +22,32 @@ class Repairable extends Component {
         currentDate: newDate,
         age: newAge
       });
-      if (newAge > this.state.nextStateAge) {
+      if (newAge > this.state.nextStateAge && this.state.condition > 0) {
+        const nextCondition = this.state.condition - 1;
+        // Yes, -1 twice.
+        const nextTransitionTime = this.props.stateTransitionTimes[nextCondition - 1];
         this.setState({
-          nextStateAge: this.state.nextStateAge + 10
+          nextStateAge: this.state.age + nextTransitionTime,
+          condition: nextCondition
         });
-        if (this.state.condition > 0) {
-          this.setState({
-            condition: this.state.condition - 1,
-            image: this.props.stateImages[this.state.condition - 1]
-          });
-        }
       }
     }, 1000);
   }
 
-  potato() {
-    console.log(this.props.row, this.props.column);
+  handleClick() {
+    const nextCondition = this.props.conditions.length - 1;
+    const nextTransitionTime = this.props.stateTransitionTimes[nextCondition - 1];
+    this.setState({
+      nextStateAge: this.state.age + nextTransitionTime,
+      condition: nextCondition
+    });
   }
 
   render() {
     return (
       <div className={this.props.displayName}
-        onClick={this.potato}
-        style={{backgroundImage: `url(${this.state.image})`}}
+        onClick={this.handleClick}
+        style={{backgroundImage: `url(${this.props.stateImages[this.state.condition]})`}}
       >
         {this.props.displayName}
         <br />
