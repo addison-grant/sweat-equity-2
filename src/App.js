@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import House from './components/House.js';
 import Sink from './components/Sink.js';
-
-class Empty extends Component {
-  render() {
-    return (
-      <div className="Empty">
-        Empty<br/>{this.props.row} {this.props.column}
-      </div>
-    );
-  }
-}
+import Empty from './components/Empty.js';
 
 class App extends Component {
   constructor(props) {
