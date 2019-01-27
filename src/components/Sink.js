@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import SinkImg1 from '../img/sink.png';
-import SinkImg2 from '../img/sinkLeaky.png';
-import SinkImg3 from '../img/sinkFlooded.png';
-import SinkImg4 from '../img/sinkDestroyed.png';
+import SinkImg1 from '../img/Sink/sink.png';
+import SinkImg2 from '../img/Sink/sinkLeaky.png';
+import SinkImg3 from '../img/Sink/sinkFlooded.png';
+import SinkImg4 from '../img/Sink/sinkDestroyed.png';
 
 class Sink extends Component {
   render() {
