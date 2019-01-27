@@ -10,6 +10,7 @@ import Computer from './Computer.js';
 import Shower from './Shower.js';
 import Refrigerator from './Refrigerator.js';
 import Bed from './Bed.js';
+import Rug from './Rug.js';
 
 class House extends React.Component {
   constructor(props) {
@@ -81,7 +82,6 @@ class House extends React.Component {
     startTimes.unshift(0, 0, 0, 0);
     shuffle(startTimes);
 
-    // 10 items.
     addItem(0, 4, Sink);
     addItem(0, 5, Stove);
     addItem(4, 7, Toilet);
@@ -94,6 +94,9 @@ class House extends React.Component {
     addItem(3, 4, Computer);
     addItem(1, 7, Refrigerator);
     addItem(5, 1, Bed);
+    addItem(5, 2, Rug);
+    addItem(1, 5, Rug);
+    addItem(2, 3, Rug);
   }
 
   render() {

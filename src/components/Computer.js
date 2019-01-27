@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
 import Computer1 from '../img/Computer/computer.png';
-import Computer2 from '../img/rug.png';
+import Computer2 from '../img/Rug/rug.png';
 import Computer3 from '../img/man.png';
 
 class Computer extends Component {
