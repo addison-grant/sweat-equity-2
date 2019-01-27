@@ -32,6 +32,8 @@ class House extends React.Component {
       });
     }, 200);
 
+    const startTimes = [];
+
     function addItem(row, column, Component) {
       function incrementRepairCount() {
         that.setState({
@@ -48,9 +50,11 @@ class House extends React.Component {
         tmpState.maxScores[key] = maxPossibleScore;
         that.setState(tmpState);
       }
+      const startDelay = startTimes.length ? startTimes.pop() : 0;
       that.state.items[row][column] = <Component row={row} column={column}
        updateScore={updateScore}
-       incrementRepairCount={incrementRepairCount} />;
+       incrementRepairCount={incrementRepairCount}
+       startDelay={startDelay}/>;
     }
 
     for (let row = 0; row < this.state.rows; ++row) {
@@ -60,6 +64,19 @@ class House extends React.Component {
       }
     }
 
+    // Set up initial randomized delays.
+    startTimes.push(...[...Array(6).keys()].map(n => n * 10));
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    startTimes.unshift(0, 0, 0, 0);
+    shuffle(startTimes);
+
+    // 10 items.
     addItem(0, 4, Sink);
     addItem(0, 5, Stove);
     addItem(4, 7, Toilet);
@@ -81,7 +98,6 @@ class House extends React.Component {
     });
     const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
 
-    const displayScoreInt = Math.round(10 * (score / maxPossibleScore));
     const messages = [
       "CONDEMNED",
       "Extreme health hazard",
@@ -95,6 +111,9 @@ class House extends React.Component {
       "It has curb appeal!",
       "Could be in a magazine!",
     ];
+    const gameOverBias = 0.5 * maxPossibleScore;
+    const displayScoreInt = Math.round(
+     (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
     const displayScore = messages[displayScoreInt];
 
     const rowKeys = Object.keys(this.state.items);

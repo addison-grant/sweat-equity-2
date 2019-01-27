@@ -10,7 +10,8 @@ class Repairable extends Component {
       age: 0
     }
 
-    this.state.nextStateAge = this.getTransitionTime(this.state.condition);
+    this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
+    console.log(this.state.nextStateAge, this.props.startDelay);
     this.handleClick = this.handleClick.bind(this);
     this.getTransitionTime = this.getTransitionTime.bind(this);
 
@@ -41,7 +42,7 @@ class Repairable extends Component {
     }
     const rand = Math.random() + 0.5;
     const base = this.props.stateTransitionTimes[condition - 1];
-    return Math.round(rand * base);
+    return rand * base;
   }
 
   updateScore() {

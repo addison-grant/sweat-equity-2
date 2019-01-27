@@ -24,8 +24,8 @@ class Sink extends Component {
         ]}
         stateTransitionTimes={[
           15,
-          15,
-          15
+          10,
+          8
         ]}
         {...this.props}
       />
