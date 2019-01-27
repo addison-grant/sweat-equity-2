@@ -1,5 +1,6 @@
 import React from 'react';
 import './House.css';
+
 class House extends React.Component {
   render() {
     const rowKeys = Object.keys(this.props.items);

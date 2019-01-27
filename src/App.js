@@ -1,66 +1,13 @@
 import React, { Component } from 'react';
-//import styled from 'styled-components';
 import './App.css';
 import House from './components/House.js';
-
-import SinkImg from './img/stove.png';
+import Sink from './components/Sink.js';
 
 class Empty extends Component {
   render() {
     return (
       <div className="Empty">
         Empty<br/>{this.props.row} {this.props.column}
-      </div>
-    );
-  }
-}
-
-class Sink extends Component {
-  constructor(props) {
-    super(props);
-    this.statuses = [
-      'Destroyed',
-      'Flooded',
-      'Leaky',
-      'Working'
-    ];
-    this.state = {
-      startDate: new Date(),
-      currentDate: new Date(),
-      age: 0,
-      nextStateAge: 10,
-      status: this.statuses.length - 1
-    }
-    setInterval(() => {
-      const newDate = new Date();
-      const newAge = Math.round((this.state.currentDate - this.state.startDate) / 1000);
-      this.setState({
-        currentDate: newDate,
-        age: newAge
-      })
-      if (newAge > this.state.nextStateAge) {
-        this.setState({
-          nextStateAge: this.state.nextStateAge + 10
-        });
-        if (this.state.status > 0) {
-          this.setState({
-            status: this.state.status - 1
-          });
-        }
-      }
-    }, 1000);
-  }
-  potato() {
-    console.log("hello");
-  }
-  render() {
-    return (
-      <div className="Sink" onClick={this.potato} style={{backgroundImage: `url(${SinkImg})`}}>
-        Sink
-        <br/>
-        Age: {this.state.age}
-        <br/>
-        {this.statuses[this.state.status]}
       </div>
     );
   }
