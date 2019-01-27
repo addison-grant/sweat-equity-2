@@ -3,7 +3,7 @@ import Repairable from './Repairable.js';
 import ShowerImg1 from '../img/Shower/bathtub.png';
 import ShowerImg2 from '../img/bed.png';
 import ShowerImg3 from '../img/clock.png';
-import ShowerImg4 from '../img/palmTree.png';
+import ShowerImg4 from '../img/PalmTree/palmTree.png';
 
 class Shower extends Component {
   render() {

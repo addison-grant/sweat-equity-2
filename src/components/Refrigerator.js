@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
 import RefrigImg1 from '../img/refrig.png';
-import RefrigImg2 from '../img/palmTree.png';
+import RefrigImg2 from '../img/PalmTree/palmTree.png';
 import RefrigImg3 from '../img/dog.png';
 import RefrigImg4 from '../img/rug.png';
 
