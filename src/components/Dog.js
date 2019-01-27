@@ -13,7 +13,7 @@ class Dog extends Component {
           'MustUrinate',
           'Comfortable'
         ]}
-        displayName='Stove'
+        displayName='Dog'
         stateImages={[
           Dog3,
           Dog2,
