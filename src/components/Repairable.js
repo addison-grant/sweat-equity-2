@@ -28,9 +28,15 @@ class Repairable extends Component {
         this.setState({
           nextStateAge: this.state.age + nextTransitionTime,
           condition: nextCondition
-        });
+        }, this.updateScore);
       }
     }, 1000);
+
+    this.updateScore();
+  }
+
+  updateScore() {
+    this.props.updateScore(this.getCondition(), this.getMaxPossibleCondition());
   }
 
   handleClick() {
@@ -39,7 +45,15 @@ class Repairable extends Component {
     this.setState({
       nextStateAge: this.state.age + nextTransitionTime,
       condition: nextCondition
-    });
+    }, this.updateScore);
+  }
+
+  getCondition() {
+    return this.state.condition;
+  }
+
+  getMaxPossibleCondition() {
+    return this.props.conditions.length - 1;
   }
 
   render() {
