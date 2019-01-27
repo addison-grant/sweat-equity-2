@@ -29,7 +29,7 @@ class Repairable extends Component {
           condition: nextCondition
         }, this.updateScore);
       }
-    }, 1000);
+    }, 200);
 
     this.updateScore();
   }

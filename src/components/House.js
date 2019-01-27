@@ -74,6 +74,7 @@ class House extends React.Component {
     });
     const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
 
+    const displayScore = Math.round(10 * (score / maxPossibleScore)) / 2;
     const rowKeys = Object.keys(this.state.items);
     return (
       <div className='House-plot'>
@@ -81,7 +82,7 @@ class House extends React.Component {
           Sweat Equity
         </div>
         <div className='House-score'>
-          House Quality: {score} / {maxPossibleScore}
+          House Quality: {displayScore} Stars
           <br/>
           {this.state.repairCount} repairs in {age} seconds
         </div>

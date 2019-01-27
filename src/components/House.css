@@ -35,6 +35,7 @@
   min-height: 100vh;
   background-color: lightgreen;
   background-image: url('../img/grasstile.png');
+  background-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
