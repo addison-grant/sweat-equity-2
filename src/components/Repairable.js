@@ -5,12 +5,15 @@ class Repairable extends Component {
     super(props);
     this.stateImages = this.props.stateImages;
     this.state = {
+      image: this.props.stateImages[this.props.conditions.length - 1],
       condition: this.props.conditions.length - 1,
       startDate: new Date(),
       currentDate: new Date(),
       age: 0,
       nextStateAge: this.props.nextStateAge
     }
+
+    this.potato = this.potato.bind(this);
 
     setInterval(() => {
       const newDate = new Date();
@@ -25,7 +28,8 @@ class Repairable extends Component {
         });
         if (this.state.condition > 0) {
           this.setState({
-            condition: this.state.condition - 1
+            condition: this.state.condition - 1,
+            image: this.props.stateImages[this.state.condition - 1]
           });
         }
       }
@@ -40,7 +44,7 @@ class Repairable extends Component {
     return (
       <div className={this.props.displayName}
         onClick={this.potato}
-        style={{backgroundImage: `url(${this.props.image})`}}
+        style={{backgroundImage: `url(${this.state.image})`}}
       >
         {this.props.displayName}
         <br />

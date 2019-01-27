@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import SinkImg from '../img/stove.png';
+import SinkImg1 from '../img/sink.png';
+import SinkImg2 from '../img/palmTree.png';
+import SinkImg3 from '../img/refrig.png';
+import SinkImg4 from '../img/rug.png';
 
 class Sink extends Component {
   render() {
@@ -14,7 +17,13 @@ class Sink extends Component {
         ]}
         nextStateAge={10}
         displayName='Sink'
-        image={SinkImg}
+        image={SinkImg1}
+        stateImages={[
+          SinkImg1,
+          SinkImg2,
+          SinkImg3,
+          SinkImg4,
+        ]}
         {...this.props}
       />
     );
