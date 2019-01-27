@@ -9,6 +9,7 @@ import Dog from './Dog.js';
 import Computer from './Computer.js';
 import Shower from './Shower.js';
 import Refrigerator from './Refrigerator.js';
+import Bed from './Bed.js';
 
 class House extends React.Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class House extends React.Component {
     addItem(5, 3, Dog);
     addItem(3, 4, Computer);
     addItem(1, 7, Refrigerator);
+    addItem(5, 1, Bed);
   }
 
   render() {
