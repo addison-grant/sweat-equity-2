@@ -51,10 +51,13 @@ class House extends React.Component {
         that.setState(tmpState);
       }
       const startDelay = startTimes.length ? startTimes.pop() : 0;
+      const initialConditionReduction = Math.random() < 0.2 ? 1 : 0;
       that.state.items[row][column] = <Component row={row} column={column}
        updateScore={updateScore}
        incrementRepairCount={incrementRepairCount}
-       startDelay={startDelay}/>;
+       startDelay={startDelay}
+       initialConditionReduction={initialConditionReduction}
+       />;
     }
 
     for (let row = 0; row < this.state.rows; ++row) {

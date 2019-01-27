@@ -4,7 +4,8 @@ class Repairable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      condition: this.props.conditions.length - 1,
+      condition: this.props.conditions.length - 1 -
+       this.props.initialConditionReduction,
       startDate: new Date(),
       currentDate: new Date(),
       age: 0
