@@ -49,12 +49,20 @@ class Repairable extends Component {
   }
 
   handleClick() {
-    const nextCondition = this.props.conditions.length - 1;
-    const nextTransitionTime = this.getTransitionTime(nextCondition);
-    this.setState({
-      nextStateAge: this.state.age + nextTransitionTime,
-      condition: nextCondition
-    }, this.updateScore);
+    const maxCondition = this.props.conditions.length - 1;
+
+    if (this.state.condition === 0) {
+      console.log("Can't repair destroyed obj");
+    } else if (this.state.condition === maxCondition) {
+      console.log("Preventative Maintenance");
+    } else {
+      const nextTransitionTime = this.getTransitionTime(maxCondition);
+      this.props.incrementRepairCount();
+      this.setState({
+        nextStateAge: this.state.age + nextTransitionTime,
+        condition: maxCondition
+      }, this.updateScore);
+    }
   }
 
   getCondition() {

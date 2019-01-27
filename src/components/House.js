@@ -15,12 +15,26 @@ class House extends React.Component {
       columns: 8,
       items: {},
       scores: {},
-      maxScores: {}
+      maxScores: {},
+      startDate: new Date(),
+      currentDate: new Date(),
+      repairCount: 0
     }
 
     const that = this;
 
+    setInterval(() => {
+      this.setState({
+        currentDate: new Date()
+      });
+    }, 200);
+
     function addItem(row, column, Component) {
+      function incrementRepairCount() {
+        that.setState({
+          repairCount: that.state.repairCount + 1
+        });
+      }
       function updateScore(score, maxPossibleScore) {
         const key = row + "-" + column;
         const tmpState = {
@@ -32,7 +46,8 @@ class House extends React.Component {
         that.setState(tmpState);
       }
       that.state.items[row][column] = <Component row={row} column={column}
-       updateScore={updateScore}/>;
+       updateScore={updateScore}
+       incrementRepairCount={incrementRepairCount} />;
     }
 
     for (let row = 0; row < this.state.rows; ++row) {
@@ -57,6 +72,7 @@ class House extends React.Component {
       score += this.state.scores[key];
       maxPossibleScore += this.state.maxScores[key];
     });
+    const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
 
     const rowKeys = Object.keys(this.state.items);
     return (
@@ -65,7 +81,9 @@ class House extends React.Component {
           Sweat Equity
         </div>
         <div className='House-score'>
-          {score} / {maxPossibleScore}
+          House Quality: {score} / {maxPossibleScore}
+          <br/>
+          {this.state.repairCount} repairs in {age} seconds
         </div>
         <table className='House-main'>
           <tbody>
