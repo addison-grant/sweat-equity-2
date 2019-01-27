@@ -15,7 +15,6 @@ class Sink extends Component {
           'Leaky',
           'Working'
         ]}
-        nextStateAge={3}
         displayName='Sink'
         stateImages={[
           SinkImg4,

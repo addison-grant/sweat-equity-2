@@ -7,8 +7,7 @@ class Repairable extends Component {
       condition: this.props.conditions.length - 1,
       startDate: new Date(),
       currentDate: new Date(),
-      age: 0,
-      nextStateAge: this.props.nextStateAge
+      age: 0
     }
 
     this.state.nextStateAge = this.props.stateTransitionTimes[this.state.condition - 1];
