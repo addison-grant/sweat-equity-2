@@ -3,6 +3,7 @@ import './House.css';
 import '../img/grasstile.png';
 import Sink from './Sink.js';
 import Stove from './Stove.js';
+import Toilet from './Toilet.js';
 import Empty from './Empty.js';
 
 class House extends React.Component {
@@ -12,14 +13,26 @@ class House extends React.Component {
     this.state = {
       rows: 6,
       columns: 8,
-      items: {
-      }
+      items: {},
+      scores: {},
+      maxScores: {}
     }
 
     const that = this;
 
     function addItem(row, column, Component) {
-      that.state.items[row][column] = <Component row={row} column={column} />;
+      function updateScore(score, maxPossibleScore) {
+        const key = row + "-" + column;
+        const tmpState = {
+          scores: that.state.scores,
+          maxScores: that.state.maxScores,
+        };
+        tmpState.scores[key] = score;
+        tmpState.maxScores[key] = maxPossibleScore;
+        that.setState(tmpState);
+      }
+      that.state.items[row][column] = <Component row={row} column={column}
+       updateScore={updateScore}/>;
     }
 
     for (let row = 0; row < this.state.rows; ++row) {
@@ -31,18 +44,25 @@ class House extends React.Component {
 
     addItem(2, 2, Sink);
     addItem(2, 4, Stove);
+    addItem(3, 7, Toilet);
   }
 
   render() {
+    let score = 0;
+    let maxPossibleScore = 0;
+    Object.keys(this.state.scores).forEach((key) => {
+      score += this.state.scores[key];
+      maxPossibleScore += this.state.maxScores[key];
+    });
+
     const rowKeys = Object.keys(this.state.items);
-    const score = "50%";
     return (
       <div className='House-plot'>
         <div className='House-title'>
           Sweat Equity
         </div>
         <div className='House-score'>
-          {score}
+          {score} / {maxPossibleScore}
         </div>
         <table className='House-main'>
           <tbody>
