@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
 import SinkImg1 from '../img/sink.png';
-import SinkImg2 from '../img/palmTree.png';
-import SinkImg3 from '../img/refrig.png';
-import SinkImg4 from '../img/rug.png';
+import SinkImg2 from '../img/sinkLeaky.png';
+import SinkImg3 from '../img/sinkFlooded.png';
+import SinkImg4 from '../img/sinkDestroyed.png';
 
 class Sink extends Component {
   render() {
@@ -15,13 +15,13 @@ class Sink extends Component {
           'Leaky',
           'Working'
         ]}
-        nextStateAge={10}
+        nextStateAge={3}
         displayName='Sink'
         stateImages={[
-          SinkImg1,
-          SinkImg2,
-          SinkImg3,
           SinkImg4,
+          SinkImg3,
+          SinkImg2,
+          SinkImg1
         ]}
         stateTransitionTimes={[
           10,
