@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Howl} from 'howler';
+import RepairSound from '../audio/tickRepair.mp3';
 
 class Repairable extends Component {
   constructor(props) {
@@ -11,8 +13,11 @@ class Repairable extends Component {
       age: 0
     }
 
+    this.repairSound = new Howl({
+      src: [RepairSound]
+    });
+
     this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
-    console.log(this.state.nextStateAge, this.props.startDelay);
     this.handleClick = this.handleClick.bind(this);
     this.getTransitionTime = this.getTransitionTime.bind(this);
 
@@ -67,6 +72,7 @@ class Repairable extends Component {
       console.log("Preventative Maintenance");
     } else {
       const nextTransitionTime = this.getTransitionTime(maxCondition);
+      this.repairSound.play();
       this.props.incrementRepairCount();
       this.setState({
         nextStateAge: this.state.age + nextTransitionTime,
