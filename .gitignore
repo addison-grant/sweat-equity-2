@@ -24,3 +24,6 @@ yarn-error.log*
 
 # vim swap files
 *.swp
+
+# Visual studio stuff
+.vs*

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import StoveGif from '../img/stove/stove.gif';
+import StoveGif from '../img/Stove/stove.gif';
 
 class Stove extends Component {
   render() {
