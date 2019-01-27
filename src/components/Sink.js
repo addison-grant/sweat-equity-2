@@ -5,6 +5,9 @@ import SinkImg2 from '../img/Sink/sinkLeaky.png';
 import SinkImg3 from '../img/Sink/sinkFlooded.png';
 import SinkImg4 from '../img/Sink/sinkDestroyed.png';
 
+import SinkSound2 from '../audio/Sink/sink-state-2.wav';
+import SinkSound3 from '../audio/Sink/sink-state-3.wav';
+
 class Sink extends Component {
   render() {
     return (
@@ -26,6 +29,11 @@ class Sink extends Component {
           15,
           10,
           8
+        ]}
+        stateTransitionSounds={[
+          SinkSound3,
+          SinkSound2,
+          SinkSound2
         ]}
         {...this.props}
       />

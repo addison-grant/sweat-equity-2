@@ -17,9 +17,18 @@ class Repairable extends Component {
       src: [RepairSound]
     });
 
+    this.sounds = [];
+
+    if (this.props.stateTransitionSounds) {
+      this.sounds = this.props.stateTransitionSounds.map(path => new Howl({
+        src: [path]
+      }));
+    }
+
+    this.getTransitionTime = this.getTransitionTime.bind(this);
     this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
     this.handleClick = this.handleClick.bind(this);
-    this.getTransitionTime = this.getTransitionTime.bind(this);
+    this.playTransitionSound = this.playTransitionSound.bind(this);
 
     setInterval(() => {
       const newDate = new Date();
@@ -29,8 +38,10 @@ class Repairable extends Component {
         age: newAge
       });
       if (newAge > this.state.nextStateAge && this.state.condition > 0) {
+        // Decay happens here.
         const nextCondition = this.state.condition - 1;
         const nextTransitionTime = this.getTransitionTime(nextCondition);
+        this.playTransitionSound(nextCondition);
         this.setState({
           nextStateAge: this.state.age + nextTransitionTime,
           condition: nextCondition
@@ -47,6 +58,14 @@ class Repairable extends Component {
       const img = new Image();
       img.src = stateImage;
     });
+  }
+
+  playTransitionSound(condition) {
+    if (condition >= this.sounds.length || condition < 0) {
+      return;
+    }
+
+    this.sounds[condition].play();
   }
 
   getTransitionTime(condition) {
