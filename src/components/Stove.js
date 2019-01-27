@@ -5,6 +5,10 @@ import Stove2 from '../img/Stove/stoveHalfOut.gif';
 import Stove3 from '../img/Stove/stoveThreeFourthsOut.gif';
 import Stove4 from '../img/Stove/stoveOut.gif';
 
+import StoveSound2 from '../audio/Stove/oven-state-2.wav';
+import StoveSound3 from '../audio/Stove/oven-state-3.wav';
+import StoveSound4 from '../audio/Stove/oven-state-4.wav';
+
 class Stove extends Component {
   render() {
     return (
@@ -26,6 +30,11 @@ class Stove extends Component {
           10,
           10,
           20
+        ]}
+        stateTransitionSounds={[
+          StoveSound4,
+          StoveSound3,
+          StoveSound2
         ]}
         {...this.props}
       />
