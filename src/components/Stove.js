@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
 import Stove1 from '../img/Stove/stove.gif';
-import Stove2 from '../img/Stove/stoveHalfout.png';
-import Stove3 from '../img/Stove/stoveThreeFourthsOut.png';
-import Stove4 from '../img/Stove/stoveOut.png';
+import Stove2 from '../img/Stove/stoveHalfOut.gif';
+import Stove3 from '../img/Stove/stoveThreeFourthsOut.gif';
+import Stove4 from '../img/Stove/stoveOut.gif';
 
 class Stove extends Component {
   render() {
