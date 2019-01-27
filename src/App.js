@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import House from './components/House.js';
 
+import SinkImg from './img/stove.png';
+
 class Empty extends Component {
   render() {
     return (
@@ -53,7 +55,7 @@ class Sink extends Component {
   }
   render() {
     return (
-      <div className="Sink" onClick={this.potato}>
+      <div className="Sink" onClick={this.potato} style={{backgroundImage: `url(${SinkImg})`}}>
         Sink
         <br/>
         Age: {this.state.age}
