@@ -10,6 +10,20 @@
   padding: 0;
 }
 
+.House-title {
+  font-size: 8vh;
+  margin-bottom: 2vh;
+  color: purple;
+}
+
+.House-score {
+  border: 2px solid black;
+  margin-bottom: 1vh;
+  font-size: 4vh;
+  color: yellow;
+  background-color: black;
+}
+
 .House-main {
   border: 1px solid blue;
   background-color: #996633;
@@ -22,20 +36,21 @@
   background-color: lightgreen;
   background-image: url('../img/grasstile.png');
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .House-cell div {
-   height: 100%;
-   width: 100%;
+  height: 100%;
+  width: 100%;
 
-   font-size: 10px;
+  font-size: 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  user-select: none;
 }
 
 .Sink {
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   color: white;
-  user-select: none;
 }
