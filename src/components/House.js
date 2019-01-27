@@ -3,6 +3,7 @@ import './House.css';
 import '../img/grasstile.png';
 import Sink from './Sink.js';
 import Stove from './Stove.js';
+import Toilet from './Toilet.js';
 import Empty from './Empty.js';
 
 class House extends React.Component {
@@ -43,6 +44,7 @@ class House extends React.Component {
 
     addItem(2, 2, Sink);
     addItem(2, 4, Stove);
+    addItem(3, 7, Toilet);
   }
 
   render() {
