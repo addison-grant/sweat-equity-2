@@ -36,6 +36,14 @@ class Repairable extends Component {
     this.updateScore();
   }
 
+  componentDidMount() {
+    // Preload images
+    this.props.stateImages.forEach(stateImage => {
+      const img = new Image();
+      img.src = stateImage;
+    });
+  }
+
   getTransitionTime(condition) {
     if (this.props.stateTransitionTimes.length === 0
      || condition < 1) {
