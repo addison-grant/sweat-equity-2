@@ -2,6 +2,7 @@ import React from 'react';
 import './House.css';
 import '../img/grasstile.png';
 import Sink from './Sink.js';
+import Stove from './Stove.js';
 import Empty from './Empty.js';
 
 class House extends React.Component {
@@ -29,6 +30,7 @@ class House extends React.Component {
     }
 
     addItem(2, 2, Sink);
+    addItem(2, 4, Stove);
   }
 
   render() {
