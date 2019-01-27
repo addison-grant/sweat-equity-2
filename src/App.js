@@ -43,12 +43,10 @@ class App extends Component {
     for (let row = 0; row < this.state.rows; ++row) {
       this.state.items[row] = {};
       for (let column = 0; column < this.state.columns; ++column) {
-        //this.state.items[row][column] = null;
         addItem(row, column, Empty);
       }
     }
 
-    //this.state.items[2][1] = <Sink row={2} column={1} />;
     addItem(2, 2, Sink);
   }
   render() {
