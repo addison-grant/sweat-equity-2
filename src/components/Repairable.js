@@ -10,7 +10,8 @@ class Repairable extends Component {
        this.props.initialConditionReduction,
       startDate: new Date(),
       currentDate: new Date(),
-      age: 0
+      age: 0,
+      tooltipMessage: this.props.tooltipMessage || "no message"
     }
 
     this.repairSound = new Howl({
@@ -124,6 +125,7 @@ class Repairable extends Component {
       <div className={this.props.displayName}
         onClick={this.handleClick}
         style={{backgroundImage: `url(${this.props.stateImages[this.state.condition]})`}}
+        data-tip={this.state.tooltipMessage}
       >
       </div>
     );

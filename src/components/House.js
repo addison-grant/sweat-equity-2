@@ -8,6 +8,7 @@ import Empty from './Empty.js';
 import Dog from './Dog.js';
 import Computer from './Computer.js';
 import Shower from './Shower.js';
+import ReactTooltip from 'react-tooltip';
 
 class House extends React.Component {
   constructor(props) {
@@ -144,6 +145,7 @@ class House extends React.Component {
             )}
           </tbody>
         </table>
+        <ReactTooltip />
       </div>
     );
   }
