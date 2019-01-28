@@ -10,7 +10,7 @@ class Dog extends Component {
       <Repairable
         conditions={[
           'Dead',
-          'MustUrinate',
+          'Must Urinate',
           'Comfortable'
         ]}
         displayName='Dog'
