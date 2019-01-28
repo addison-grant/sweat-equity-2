@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import RefrigImg1 from '../img/refrig.png';
+import RefrigImg3 from '../img/Refrigerator/refrig.png';
 import RefrigImg2 from '../img/PalmTree/palmTree.png';
-import RefrigImg3 from '../img/dog.png';
-import RefrigImg4 from '../img/rug.png';
+import RefrigImg1 from '../img/Dog/dog.png';
 
-class Sink extends Component {
+class Refrigerator extends Component {
   render() {
     return (
       <Repairable
         conditions={[
           'Destroyed',
-          'Flooded',
-          'Leaky',
+          'Broken',
           'Working'
         ]}
         nextStateAge={10}
@@ -21,8 +19,12 @@ class Sink extends Component {
         stateImages={[
           RefrigImg1,
           RefrigImg2,
-          RefrigImg3,
-          RefrigImg4,
+          RefrigImg3
+        ]}
+        stateTransitionTimes={[
+          15,
+          20,
+          3
         ]}
         {...this.props}
       />
@@ -30,4 +32,4 @@ class Sink extends Component {
   }
 }
 
-export default Refrig;
+export default Refrigerator;
