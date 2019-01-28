@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Howl} from 'howler';
 import RepairSound from '../audio/tickRepair.mp3';
+import DenyActionSound from '../audio/cannot-act.wav';
 
 class Repairable extends Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class Repairable extends Component {
 
     this.repairSound = new Howl({
       src: [RepairSound]
+    });
+
+    this.denyActionSound = new Howl({
+      src: [DenyActionSound]
     });
 
     this.sounds = [];
@@ -97,8 +102,10 @@ class Repairable extends Component {
 
     if (this.state.condition === 0) {
       console.log("Can't repair destroyed obj");
+      this.denyActionSound.play();
     } else if (this.state.condition === maxCondition) {
       console.log("Preventative Maintenance");
+      this.denyActionSound.play();
     } else {
       const nextTransitionTime = this.getTransitionTime(maxCondition);
       this.repairSound.play();
