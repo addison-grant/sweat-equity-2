@@ -26,7 +26,7 @@ class Toilet extends Component {
           ToiletImg1
         ]}
         stateTransitionTimes={[
-          5,
+          8,
           10,
           12
         ]}
