@@ -3,6 +3,8 @@ import Image from '../img/floortile.png';
 
 class Empty extends Component {
   render() {
+    return null;
+    /*
     return (
       <div className="Empty"
         onClick={() => console.log(this.props.row, this.props.column)}
@@ -11,6 +13,7 @@ class Empty extends Component {
         Empty<br/>{this.props.row} {this.props.column}
       </div>
     );
+    */
   }
 }
 
