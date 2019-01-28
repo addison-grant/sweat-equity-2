@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import RefrigImg3 from '../img/Refrigerator/refrig.png';
-import RefrigImg2 from '../img/PalmTree/palmTree.png';
-import RefrigImg1 from '../img/Dog/dog.png';
+import RefrigImg4 from '../img/Refrigerator/refrig.png';
+import RefrigImg3 from '../img/Refrigerator/refrigDamaged.png';
+import RefrigImg2 from '../img/Refrigerator/refrigDying.png';
+import RefrigImg1 from '../img/Refrigerator/refrigDead.png';
 
 class Refrigerator extends Component {
   render() {
     return (
       <Repairable
         conditions={[
-          'Destroyed',
+          'On Fire',
+          'Sparking',
           'Broken',
           'Working'
         ]}
@@ -19,11 +21,12 @@ class Refrigerator extends Component {
         stateImages={[
           RefrigImg1,
           RefrigImg2,
-          RefrigImg3
+          RefrigImg3,
+          RefrigImg4
         ]}
         stateTransitionTimes={[
-          15,
-          20,
+          10,
+          10,
           3
         ]}
         {...this.props}
