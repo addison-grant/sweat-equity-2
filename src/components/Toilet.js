@@ -15,7 +15,7 @@ class Toilet extends Component {
           'Leaking',
           'Working'
         ]}
-        displayName='Sink'
+        displayName='Toilet'
         stateImages={[
           ToiletImg4,
           ToiletImg3,
