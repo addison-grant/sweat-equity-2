@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Repairable from './Repairable.js';
-import ShowerImg1 from '../img/Shower/bathtub.png';
-import ShowerImg2 from '../img/bed.png';
-import ShowerImg3 from '../img/clock.png';
-import ShowerImg4 from '../img/PalmTree/palmTree.png';
+import ShowerImg1 from '../img/Shower/shower1.gif';
+import ShowerImg2 from '../img/Shower/shower2.gif';
+import ShowerImg3 from '../img/Shower/shower3.gif';
 
 class Shower extends Component {
   render() {
@@ -11,20 +10,17 @@ class Shower extends Component {
       <Repairable
         conditions={[
           'Destroyed',
-          'Flooded',
           'Leaky',
           'Working'
         ]}
         displayName='Shower'
         stateImages={[
-          ShowerImg4,
           ShowerImg3,
           ShowerImg2,
           ShowerImg1
         ]}
         stateTransitionTimes={[
           8,
-          15,
           10
         ]}
         {...this.props}
