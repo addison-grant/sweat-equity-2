@@ -16,6 +16,9 @@ class Repairable extends Component {
       tooltipMessage: this.props.displayName + " in working condition"
     }
 
+    this.state.tooltipMessage = this.props.displayName + ": " +
+     this.props.conditions[this.state.condition];
+
     this.repairSound = new Howl({
       src: [RepairSound]
     });
@@ -46,21 +49,19 @@ class Repairable extends Component {
       });
       if (newAge > this.state.nextStateAge && this.state.condition > 0) {
         // Decay happens here.
-        this.setState({
-          tooltipMessage: "This " + this.props.displayName + " needs repair"
-        });
         const nextCondition = this.state.condition - 1;
+        let nextTooltipMessage =
+         this.props.displayName + ": " + this.props.conditions[nextCondition];
+        if (nextCondition === 0) {
+          nextTooltipMessage += " (Beyond Repair)";
+        }
         const nextTransitionTime = this.getTransitionTime(nextCondition);
         this.playTransitionSound(nextCondition);
         this.setState({
           nextStateAge: this.state.age + nextTransitionTime,
-          condition: nextCondition
+          condition: nextCondition,
+          tooltipMessage: nextTooltipMessage
         }, this.updateScore);
-      }
-      if (this.state.condition === 0) {
-        this.setState({
-          tooltipMessage: this.props.displayName + " beyond repair!"
-        });
       }
     }, 200);
 
@@ -110,10 +111,12 @@ class Repairable extends Component {
       const nextTransitionTime = this.getTransitionTime(maxCondition);
       this.repairSound.play();
       this.props.incrementRepairCount();
+      const nextTooltipMessage =
+       this.props.displayName + ": " + this.props.conditions[maxCondition];
       this.setState({
         nextStateAge: this.state.age + nextTransitionTime,
         condition: maxCondition,
-        tooltipMessage: this.props.displayName + " in working condition"
+        tooltipMessage: nextTooltipMessage
       }, this.updateScore);
     }
   }
