@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import House from './components/House.js';
+import {Howler} from 'howler';
 
 class App extends Component {
   render() {
@@ -9,6 +10,9 @@ class App extends Component {
         <House/>
       </div>
     );
+  }
+  componentDidMount() {
+    Howler.volume(0.3);
   }
 }
 

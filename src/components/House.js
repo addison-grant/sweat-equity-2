@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import './House.css';
 import '../img/grasstile.png';
+import {Howler} from 'howler';
 
 import Empty from './Empty.js';
 
@@ -33,10 +34,39 @@ class House extends React.Component {
 
     const that = this;
 
-    setInterval(() => {
-      this.setState({
-        currentDate: new Date()
+    let gameInterval = setInterval(() => {
+      let score = 0;
+      let maxPossibleScore = 0;
+      Object.keys(this.state.scores).forEach((key) => {
+        score += this.state.scores[key];
+        maxPossibleScore += this.state.maxScores[key];
       });
+      const gameOverBias = 0.5 * maxPossibleScore;
+      const messages = [
+        "CONDEMNED",
+        "Extreme health hazard",
+        "Hovel",
+        "Smells disgusting",
+        "Shack of garbage",
+        "Fixer-upper",
+        "It's got potential",
+        "Messy but manageable",
+        "Lived in",
+        "It has curb appeal!",
+        "Could be in a magazine!",
+      ];
+      const displayScoreInt = Math.round(
+     (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
+      const displayScore = messages[displayScoreInt];
+      this.setState({
+        currentDate: new Date(),
+        displayScoreInt: displayScoreInt,
+        displayScore: displayScore,
+      });
+      if (displayScoreInt === 0) {
+        Howler.volume(0);
+        clearInterval(gameInterval);
+      }
     }, 200);
 
     const startTimes = [];
@@ -106,32 +136,7 @@ class House extends React.Component {
   }
 
   render() {
-    let score = 0;
-    let maxPossibleScore = 0;
-    Object.keys(this.state.scores).forEach((key) => {
-      score += this.state.scores[key];
-      maxPossibleScore += this.state.maxScores[key];
-    });
     const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
-
-    const messages = [
-      "CONDEMNED",
-      "Extreme health hazard",
-      "Hovel",
-      "Smells disgusting",
-      "Shack of garbage",
-      "Fixer-upper",
-      "It's got potential",
-      "Messy but manageable",
-      "Lived in",
-      "It has curb appeal!",
-      "Could be in a magazine!",
-    ];
-    const gameOverBias = 0.5 * maxPossibleScore;
-    const displayScoreInt = Math.round(
-     (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
-    const displayScore = messages[displayScoreInt];
-
     const rowKeys = Object.keys(this.state.items);
 
     return (
@@ -140,7 +145,7 @@ class House extends React.Component {
           Sweat Equity
         </div>
         <div className='House-score'>
-          House Quality: {displayScore}
+          House Quality: {this.state.displayScore}
           <br/>
           {this.state.repairCount} repairs in {age} seconds
         </div>
