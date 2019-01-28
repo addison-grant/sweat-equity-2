@@ -10,7 +10,9 @@ class Repairable extends Component {
        this.props.initialConditionReduction,
       startDate: new Date(),
       currentDate: new Date(),
-      age: 0
+      age: 0,
+      displayName: this.props.displayName,
+      tooltipMessage: this.props.displayName + " in working condition"
     }
 
     this.repairSound = new Howl({
@@ -39,6 +41,9 @@ class Repairable extends Component {
       });
       if (newAge > this.state.nextStateAge && this.state.condition > 0) {
         // Decay happens here.
+        this.setState({
+          tooltipMessage: "This " + this.props.displayName + " needs repair"
+        });
         const nextCondition = this.state.condition - 1;
         const nextTransitionTime = this.getTransitionTime(nextCondition);
         this.playTransitionSound(nextCondition);
@@ -46,6 +51,11 @@ class Repairable extends Component {
           nextStateAge: this.state.age + nextTransitionTime,
           condition: nextCondition
         }, this.updateScore);
+      }
+      if (this.state.condition === 0) {
+        this.setState({
+          tooltipMessage: this.props.displayName + " beyond repair!"
+        });
       }
     }, 200);
 
@@ -95,7 +105,8 @@ class Repairable extends Component {
       this.props.incrementRepairCount();
       this.setState({
         nextStateAge: this.state.age + nextTransitionTime,
-        condition: maxCondition
+        condition: maxCondition,
+        tooltipMessage: this.props.displayName + " in working condition"
       }, this.updateScore);
     }
   }
@@ -124,6 +135,7 @@ class Repairable extends Component {
       <div className={this.props.displayName}
         onClick={this.handleClick}
         style={{backgroundImage: `url(${this.props.stateImages[this.state.condition]})`}}
+        data-tip={this.state.tooltipMessage}
       >
       </div>
     );
