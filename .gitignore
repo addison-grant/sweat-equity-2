@@ -26,4 +26,5 @@ yarn-error.log*
 *.swp
 
 # Visual studio stuff
-.vs*
+src/.vs
+src/.vs/*
