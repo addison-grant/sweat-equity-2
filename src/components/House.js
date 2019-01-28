@@ -1,16 +1,19 @@
 import React from 'react';
 import './House.css';
 import '../img/grasstile.png';
+
+import Empty from './Empty.js';
+
 import Sink from './Sink.js';
 import Stove from './Stove.js';
 import Toilet from './Toilet.js';
-import Empty from './Empty.js';
 import Dog from './Dog.js';
 import Computer from './Computer.js';
 import Shower from './Shower.js';
 import Refrigerator from './Refrigerator.js';
 import Bed from './Bed.js';
 import Rug from './Rug.js';
+import Tree from './Tree.js';
 
 class House extends React.Component {
   constructor(props) {
@@ -71,7 +74,7 @@ class House extends React.Component {
     }
 
     // Set up initial randomized delays.
-    startTimes.push(...[...Array(6).keys()].map(n => n * 10));
+    startTimes.push(...[...Array(10).keys()].map(n => n * 10));
     function shuffle(a) {
       for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -97,6 +100,8 @@ class House extends React.Component {
     addItem(5, 2, Rug);
     addItem(1, 5, Rug);
     addItem(2, 3, Rug);
+    addItem(0, 0, Tree);
+    addItem(4, 5, Tree);
   }
 
   render() {
