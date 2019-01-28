@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Howl} from 'howler';
 import RepairSound from '../audio/tickRepair.wav';
 import DenyActionSound from '../audio/cannot-act.wav';
+import ReactTooltip from 'react-tooltip';
 
 class Repairable extends Component {
   constructor(props) {
@@ -117,7 +118,10 @@ class Repairable extends Component {
         nextStateAge: this.state.age + nextTransitionTime,
         condition: maxCondition,
         tooltipMessage: nextTooltipMessage
-      }, this.updateScore);
+      }, () => {
+        this.updateScore();
+        ReactTooltip.hide();
+      });
     }
   }
 
