@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import './House.css';
 import '../img/grasstile.png';
 import Sink from './Sink.js';
@@ -151,6 +152,7 @@ class House extends React.Component {
             )}
           </tbody>
         </table>
+        <ReactTooltip />
       </div>
     );
   }
