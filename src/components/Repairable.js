@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Howl} from 'howler';
-import RepairSound from '../audio/tickRepair.mp3';
+import RepairSound from '../audio/tickRepair.wav';
 import DenyActionSound from '../audio/cannot-act.wav';
 
 class Repairable extends Component {
