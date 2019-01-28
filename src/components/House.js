@@ -58,15 +58,16 @@ class House extends React.Component {
       const displayScoreInt = Math.round(
      (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
       const displayScore = messages[displayScoreInt];
+      if (displayScoreInt === 0 && this.state.displayScoreInt !== 0) {
+        Howler.volume(0);
+        clearInterval(gameInterval);
+        alert("GAME OVER. Your house has become awful");
+      }
       this.setState({
         currentDate: new Date(),
         displayScoreInt: displayScoreInt,
         displayScore: displayScore,
       });
-      if (displayScoreInt === 0) {
-        Howler.volume(0);
-        clearInterval(gameInterval);
-      }
     }, 200);
 
     const startTimes = [];
@@ -133,6 +134,11 @@ class House extends React.Component {
     addItem(2, 3, Rug);
     addItem(0, 0, Tree);
     addItem(4, 5, Tree);
+    addItem(1, 2, Tree);
+    addItem(0, 6, Tree);
+    addItem(5, 5, Bed);
+    addItem(2, 6, Dog);
+    addItem(4, 0, Computer);
   }
 
   render() {
