@@ -6,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 
 class Repairable extends Component {
   constructor(props) {
+      // 20 percent of household items start in "used" state.
     super(props);
     this.state = {
       condition: this.props.conditions.length - 1 -
@@ -36,10 +37,12 @@ class Repairable extends Component {
       }));
     }
 
+    //pass context "this" for access
     this.getTransitionTime = this.getTransitionTime.bind(this);
-    this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
-    this.handleClick = this.handleClick.bind(this);
     this.playTransitionSound = this.playTransitionSound.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    
+    this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
 
     setInterval(() => {
       const newDate = new Date();
@@ -62,11 +65,17 @@ class Repairable extends Component {
           nextStateAge: this.state.age + nextTransitionTime,
           condition: nextCondition,
           tooltipMessage: nextTooltipMessage
-        }, this.updateScore);
+        });
       }
     }, 200);
 
-    this.updateScore();
+  }
+
+  // The React website recommender switching to the below method
+  // instead of a callback on setInterval. 
+  
+  componentDidUpdate(){
+      this.updateScore();
   }
 
   componentDidMount() {
