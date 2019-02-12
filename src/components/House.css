@@ -27,7 +27,11 @@
 .House-main {
   border: 1px solid blue;
   background-color: #996633;
-  background-image: url("../img/floorPlan.PNG");
+  background-image: url('../img/floorPlan.PNG');
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  cursor: url('../img/man.png'), auto;
 }
 
 .House-plot {
