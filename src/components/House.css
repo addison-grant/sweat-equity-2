@@ -27,6 +27,7 @@
 .House-main {
   border: 1px solid blue;
   background-color: #996633;
+  background-image: url("../img/floorPlan.PNG");
 }
 
 .House-plot {
