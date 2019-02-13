@@ -18,12 +18,14 @@ import Rug from './Rug.js';
 import Tree from './Tree.js';
 
 class House extends React.Component {
+    
   constructor(props) {
     super(props);
 
     this.state = {
       rows: 6,
       columns: 8,
+      gameIntervalID: '',
       items: {},
       scores: {},
       maxScores: {},
@@ -31,10 +33,10 @@ class House extends React.Component {
       currentDate: new Date(),
       repairCount: 0
     }
-
+    
     const that = this;
 
-    let gameInterval = setInterval(() => {
+    this.state.gameIntervalID = window.setInterval(() => {
       let score = 0;
       let maxPossibleScore = 0;
       
@@ -42,6 +44,7 @@ class House extends React.Component {
       // .
       // everytime
       //
+      
       Object.keys(this.state.scores).forEach((key) => {
         score += this.state.scores[key];
         maxPossibleScore += this.state.maxScores[key];
@@ -69,10 +72,8 @@ class House extends React.Component {
       
      (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
       const displayScore = messages[displayScoreInt];
-      if (displayScoreInt === 0 && this.state.displayScoreInt !== 0) {
-        Howler.volume(0);
-        clearInterval(gameInterval);
-        alert("GAME OVER. Your house has become awful");
+      if (displayScoreInt === 0) {
+          this.deconstructor();
       }
       this.setState({
         currentDate: new Date(),
@@ -168,6 +169,16 @@ class House extends React.Component {
     addItem(4, 0, Computer);
   }
 
+  // not used yet. I may use this if I have a list of things to clean up.
+  deconstructor() {
+      
+    Howler.volume(0);
+    window.clearInterval(this.state.gameIntervalID);
+    alert("GAME OVER. Your house has become awful");
+    window.setTimeout(() => {this.props.setGameState('menu');},5000);
+    
+  }
+  
   render() {
     const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
     const rowKeys = Object.keys(this.state.items);
@@ -199,6 +210,7 @@ class House extends React.Component {
       </div>
     );
   }
+
 }
 
 export default House;
