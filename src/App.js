@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import House from './components/House.js';
+import Score from './components/Score.js';
 import {Howler} from 'howler';
 
 class App extends Component {

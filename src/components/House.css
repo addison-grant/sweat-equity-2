@@ -30,7 +30,7 @@
   background-image: url('../img/floorPlan.PNG');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  cursor: url('../img/man.png'), auto;
+  cursor: url('../img/Cursor/man.png'), auto;
 }
 
 .House-plot {

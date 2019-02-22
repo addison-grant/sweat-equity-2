@@ -36,14 +36,16 @@ class House extends React.Component {
     
     const that = this;
 
+    // Game Loop.
+    // It may be best to move the stuff inside
+    // into a function called update in order to match standard
+    // game programming patterns. game loop {update; draw;}
+    
     this.state.gameIntervalID = window.setInterval(() => {
       let score = 0;
       let maxPossibleScore = 0;
       
-      // calculating max and current score based on tile props
-      // .
-      // everytime
-      //
+    // calculating max and current score based on tile props.
       
       Object.keys(this.state.scores).forEach((key) => {
         score += this.state.scores[key];
@@ -73,7 +75,7 @@ class House extends React.Component {
      (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
       const displayScore = messages[displayScoreInt];
       if (displayScoreInt === 0) {
-          this.deconstructor();
+          this.deconstructor(); //end of game
       }
       this.setState({
         currentDate: new Date(),
@@ -82,6 +84,8 @@ class House extends React.Component {
       });
     }, 200); // .2 second refresh
 
+    // end of Game Loop
+    
     const startTimes = [];
 
     function addItem(row, column, Component) {
@@ -169,7 +173,7 @@ class House extends React.Component {
     addItem(4, 0, Computer);
   }
 
-  // not used yet. I may use this if I have a list of things to clean up.
+
   deconstructor() {
       
     Howler.volume(0);
