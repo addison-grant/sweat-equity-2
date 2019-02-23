@@ -1,18 +1,36 @@
 class Score {
     constructor() {
+        
         this.score = 0;
+        this.time = 0;
+    }
+    
+    addRepair = () => {
+        
+        console.assert(this.score >= 0, this.Score + 1 !== Infinity);
+        return this.score += 1;
     }
 
-    add(increment) {
-        console.assert(increment >= 0, this.Score + increment !== Infinity);
-        this.score += increment;
+    setTime = (timeValue) => {
+        
+        console.assert(timeValue >= 0, timeValue !== Infinity);
+        return this.time = timeValue;
     }
     
     clear() {
+        
         this.score = 0;
     }
     
-    get() {
+    getRepairs() {
+        
         return this.score;
     }
+    
+    getTime() {
+        
+        return this.time;
+    }
 }
+
+export default Score;

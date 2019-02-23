@@ -31,7 +31,8 @@ class House extends React.Component {
       maxScores: {},
       startDate: new Date(),
       currentDate: new Date(),
-      repairCount: 0
+      repairCount: 0,
+      age: ''
     }
     
     const that = this;
@@ -73,6 +74,7 @@ class House extends React.Component {
       // across the message array. Just like A - F grades in school.
       
      (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
+     
       const displayScore = messages[displayScoreInt];
       if (displayScoreInt === 0) {
           this.deconstructor(); //end of game
@@ -92,8 +94,9 @@ class House extends React.Component {
         
       //private function  
       function incrementRepairCount() {
+
         that.setState({
-          repairCount: that.state.repairCount + 1
+          repairCount: that.props.incrementRepairs()
         });
       }
       
@@ -116,6 +119,9 @@ class House extends React.Component {
 
       //the item passed in is set to the following JSX expression.
       //JSX -> React.creatElement(Component,{the props go here})
+      
+      // state items update won't call render when direct accessing them
+      
       that.state.items[row][column] = <Component row={row} column={column}
        updateScore={updateScore}
        incrementRepairCount={incrementRepairCount}
@@ -184,7 +190,7 @@ class House extends React.Component {
   }
   
   render() {
-    const age = Math.round((this.state.currentDate - this.state.startDate) / 1000);
+    const age = this.props.setAge(Math.round((this.state.currentDate - this.state.startDate) / 1000));
     const rowKeys = Object.keys(this.state.items);
 
     return (

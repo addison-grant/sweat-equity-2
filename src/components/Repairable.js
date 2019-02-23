@@ -15,7 +15,8 @@ class Repairable extends Component {
       currentDate: new Date(),
       age: 0,
       displayName: this.props.displayName,
-      tooltipMessage: this.props.displayName + " in working condition"
+      tooltipMessage: this.props.displayName + " in working condition",
+      intervalId: ''
     }
 
     this.state.tooltipMessage = this.props.displayName + ": " +
@@ -40,11 +41,11 @@ class Repairable extends Component {
     //pass context "this" for access
     this.getTransitionTime = this.getTransitionTime.bind(this);
     this.playTransitionSound = this.playTransitionSound.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    
+    this.handleClick = this.handleClick.bind(this);   
     this.state.nextStateAge = this.props.startDelay + this.getTransitionTime(this.state.condition);
-
-    setInterval(() => {
+    
+    
+    this.state.intervalId = setInterval(() => {
       const newDate = new Date();
       const newAge = Math.round((this.state.currentDate - this.state.startDate) / 1000);
       this.setState({
@@ -68,10 +69,9 @@ class Repairable extends Component {
         });
       }
     }, 200);
-
   }
 
-  // The React website recommender switching to the below method
+  // The React website recommended switching to the below method
   // instead of a callback on setInterval. 
   
   componentDidUpdate(){
@@ -84,6 +84,10 @@ class Repairable extends Component {
       const img = new Image();
       img.src = stateImage;
     });
+  }
+  
+  componentWillUnmount() {
+      window.clearInterval(this.state.intervalId);
   }
 
   playTransitionSound(condition) {
