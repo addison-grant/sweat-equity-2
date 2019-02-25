@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import House from './components/House.js';
-import Menu from './components/Menu.js';
+import React, {Component} from 'react';
+import House from './House.js';
+import Menu  from './Menu.js';
 
-class GameSwitchboard extends Component {
+class GameSwitchboard extends React.Component {
     
     constructor(props) {
         super(props);
