@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../CSS/Menu.css';
 import logo from '../img/Menu/se1.png';
+import selfie from '../img/selfie.jpg';
 
 class Menu extends Component {
     constructor(props){
@@ -22,7 +23,22 @@ class Menu extends Component {
                 <p> 
                     Highscore: {this.props.repairs} repairs in {this.props.sec} seconds.
                 </p>
-                <button className="menu-button" onClick={this.startGame}> Play Game </button>
+                <div>
+                    <button className="menu-button" onClick={this.startGame}>
+                        Play Game 
+                    </button>
+                </div>
+                <dl className="team">
+                    <dt> Addison Grant</dt>
+                    <dt> Bryce Schultz</dt>
+                    <dt> Isaias Diaz</dt>
+                    <dt> Jason Iqbal</dt>
+                    <dt> Jay Choi</dt>
+                    <dt> Sterling Hirsh</dt>
+                </dl>
+                <div>
+                    <img className="team" src={selfie} alt='team'/>
+                </div>
             </div>
         );
     }
