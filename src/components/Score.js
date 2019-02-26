@@ -17,9 +17,10 @@ class Score {
         return this.time = timeValue;
     }
     
-    clear() {
+    clear = () => {
         
         this.score = 0;
+        this.time = 0;
     }
     
     getRepairs() {

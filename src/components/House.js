@@ -185,7 +185,7 @@ class House extends React.Component {
     Howler.volume(0);
     window.clearInterval(this.state.gameIntervalID);
     alert("GAME OVER. Your house has become awful");
-    window.setTimeout(() => {this.props.setGameState('menu');},5000);
+    window.setTimeout(() => {this.props.setGameState('menu');},3000);
     
   }
   

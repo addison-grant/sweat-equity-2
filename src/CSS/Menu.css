@@ -1,6 +1,9 @@
-.logo-center {
-    display: block;
+.menu-center {
+    display: inline;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+}
+
+.menu-button {
+    min-width: 216px;
 }

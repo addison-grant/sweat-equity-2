@@ -17,19 +17,12 @@ class Menu extends Component {
     
     render() {
         return (
-            <div>
-                <img src={logo} className="logo-center" alt='logo goes here'/>
-                <p> Highscore: {this.props.repairs} repairs in {this.props.sec} seconds.</p>
-                <ul>
-                    <li>
-                        <button onClick={this.startGame}> Play </button>
-                    </li>
-                    <li>
-                        <button> Quit </button>
-                    </li>
-                </ul>
-                
-                
+            <div className="menu-center">
+                <img src={logo} alt='logo goes here'/>
+                <p> 
+                    Highscore: {this.props.repairs} repairs in {this.props.sec} seconds.
+                </p>
+                <button className="menu-button" onClick={this.startGame}> Play Game </button>
             </div>
         );
     }

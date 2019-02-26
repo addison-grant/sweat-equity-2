@@ -10,7 +10,7 @@ class App extends Component {
         
         super(props);
         this.state = {
-            gamestate: 'game',
+            gamestate: 'menu',
             playerScore: new Score()
             
         };    
@@ -19,7 +19,11 @@ class App extends Component {
   // Make sure newstate is a valid state and set it.
     changeGameState = (newstate) => {
         
-        console.assert(newstate === 'game' || newstate === 'menu',
+        console.assert(
+            newstate === 'game' || 
+            newstate === 'menu' ||
+            newstate === 'start'
+            ,
          "Cannot set game state invalid arg input.");
         this.setState({gamestate: newstate});
     }
@@ -27,6 +31,7 @@ class App extends Component {
     render() {
         const gState        = this.state.gamestate;
         const setGameState  = this.changeGameState;
+        const clearScore    = this.state.playerScore.clear;
         const addRepair     = this.state.playerScore.addRepair;
         const setAge        = this.state.playerScore.setTime;
         let repairScore     = this.state.playerScore.getRepairs();
@@ -41,6 +46,7 @@ class App extends Component {
                     addRepair       = {addRepair}
                     ageScore        = {ageScore}
                     setAge          = {setAge}
+                    clearScore      = {clearScore}
                 />
             </div>
         );

@@ -15,7 +15,14 @@ class GameSwitchboard extends React.Component {
         const addRepair         = this.props.addRepair;
         const age               = this.props.ageScore;
         const setAge            = this.props.setAge;
-          
+        const clearScore        = this.props.clearScore;
+
+        if(gamestate === 'start'){
+            clearScore();
+            window.setTimeout(() => { changeGameState('game'); },500);
+            return <h1> Ready Start!!! </h1>
+        }
+        
         if(gamestate === 'game'){
             return (
                 <House 
