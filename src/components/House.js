@@ -22,10 +22,13 @@ class House extends React.Component {
   constructor(props) {
     super(props);
 
+    this.endGame = this.endGame.bind(this);
+
+    this.gameIntervalID = null;
+
     this.state = {
       rows: 6,
       columns: 8,
-      gameIntervalID: '',
       items: {},
       scores: {},
       maxScores: {},
@@ -42,7 +45,7 @@ class House extends React.Component {
     // into a function called update in order to match standard
     // game programming patterns. game loop {update; draw;}
     
-    this.state.gameIntervalID = window.setInterval(() => {
+    this.gameIntervalID = window.setInterval(() => {
       let score = 0;
       let maxPossibleScore = 0;
       
@@ -76,14 +79,15 @@ class House extends React.Component {
      (messages.length - 1) * (Math.max(0, score - gameOverBias) / (maxPossibleScore - gameOverBias)));
      
       const displayScore = messages[displayScoreInt];
-      if (displayScoreInt === 0) {
-          this.deconstructor(); //end of game
-      }
       this.setState({
         currentDate: new Date(),
         displayScoreInt: displayScoreInt,
         displayScore: displayScore,
       });
+
+      if (displayScoreInt === 0) {
+        this.endGame();
+      }
     }, 200); // .2 second refresh
 
     // end of Game Loop
@@ -180,15 +184,16 @@ class House extends React.Component {
   }
 
 
-  deconstructor() {
+  endGame() {
       
     Howler.volume(0);
-    window.clearInterval(this.state.gameIntervalID);
-    alert("GAME OVER. Your house has become awful");
-    window.setTimeout(() => {this.props.setGameState('menu');},3000);
-    
+    window.clearInterval(this.gameIntervalID);
+    window.setTimeout(() => {
+       alert("GAME OVER. Your house has become awful");
+       window.setTimeout(() => {this.props.setGameState('menu');}, 2000);
+    }, 200);
   }
-  
+
   render() {
     const age = this.props.setAge(Math.round((this.state.currentDate - this.state.startDate) / 1000));
     const rowKeys = Object.keys(this.state.items);
