@@ -1,13 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import House from './House.js';
 import Menu  from './Menu.js';
 
 class GameSwitchboard extends React.Component {
-    
-    constructor(props) {
-        super(props);
-    }
-    
     render() {
         const gamestate         = this.props.gamestate;
         const changeGameState   = this.props.changeGameState;

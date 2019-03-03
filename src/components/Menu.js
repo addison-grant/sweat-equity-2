@@ -4,14 +4,7 @@ import logo from '../img/Menu/se1.png';
 import selfie from '../img/selfie.jpg';
 
 class Menu extends Component {
-    constructor(props){
-        super(props);
-        
-    }
-    
-    
     // on button click change gamestate
-    
     startGame = () => {
         this.props.setGameState('start');
     }
