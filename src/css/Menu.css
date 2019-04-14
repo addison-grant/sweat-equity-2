@@ -11,3 +11,9 @@
 .team {
     padding-top: 50px;
 }
+
+.instructions {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -21,6 +21,12 @@ class Menu extends Component {
                         Play Game 
                     </button>
                 </div>
+                <p className="instructions">
+                    Everything is falling apart in your house and only you can save it.
+                    Fix your house before it is condemned! With magic fingers, repairing
+                    an item is as easy as touching it or clicking it. Don't wait! If an
+                    item is broken completely it can no longer be repaired.
+                </p>
                 <dl className="team">
                     <dt> Addison Grant</dt>
                     <dt> Bryce Schultz</dt>
