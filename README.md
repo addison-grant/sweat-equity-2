@@ -1,6 +1,6 @@
 This game originated at the Global Game Jam 2019 hosted by Cal Poly at the iFixit office in San Luis Obispo, CA, USA.
 
-Try out our game at http://www.sweat-equity.xyz
+Try out our game at http://www.sweat-equity.xyz!
 
 The game's authors are:
 
