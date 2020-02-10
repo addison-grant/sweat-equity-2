@@ -1,8 +1,21 @@
 import React from 'react';
 import House from './House.js';
 import Menu  from './Menu.js';
+import { 
+  Stitch, 
+  RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
 class GameSwitchboard extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.client = Stitch.initializeDefaultAppClient('sweatequity-cbpxb');
+        this.db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('highScores');      
+    }
+  
+    componentDidMount() {
+    }
+  
     render() {
         const gamestate         = this.props.gamestate;
         const changeGameState   = this.props.changeGameState;
@@ -38,6 +51,8 @@ class GameSwitchboard extends React.Component {
             if(prevHighScore > repairs) {
                 return (
                     <Menu 
+                        db = {this.db}
+                        client = {this.client}
                         repairs = {prevHighScore} 
                         sec = {prevHighScoreAge}
                         setGameState = {changeGameState}
@@ -52,6 +67,8 @@ class GameSwitchboard extends React.Component {
         
         return ( 
             <Menu 
+                db = {this.db}
+                client = {this.client}
                 repairs = {repairs} 
                 sec = {age} 
                 setGameState = {changeGameState}
