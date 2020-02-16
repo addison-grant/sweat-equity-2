@@ -39,18 +39,20 @@ class Menu extends Component {
         
         if(this.state.serverLoaded) {
             return(
-                <div>
-                    <ScoreListItem  props = {props.props[0]}/>
-                    <ScoreListItem  props = {props.props[1]}/>
-                    <ScoreListItem  props = {props.props[2]}/>
-                    <ScoreListItem  props = {props.props[3]}/>
-                    <ScoreListItem  props = {props.props[4]}/>
-                    <ScoreListItem  props = {props.props[5]}/>
-                    <ScoreListItem  props = {props.props[6]}/>
-                    <ScoreListItem  props = {props.props[7]}/>
-                    <ScoreListItem  props = {props.props[8]}/>
-                    <ScoreListItem  props = {props.props[9]}/>
-                </div>
+                <table className="Highscore-table">
+                    <tbody>
+                        <ScoreListItem  props = {props.props[0]}/>
+                        <ScoreListItem  props = {props.props[1]}/>
+                        <ScoreListItem  props = {props.props[2]}/>
+                        <ScoreListItem  props = {props.props[3]}/>
+                        <ScoreListItem  props = {props.props[4]}/>
+                        <ScoreListItem  props = {props.props[5]}/>
+                        <ScoreListItem  props = {props.props[6]}/>
+                        <ScoreListItem  props = {props.props[7]}/>
+                        <ScoreListItem  props = {props.props[8]}/>
+                        <ScoreListItem  props = {props.props[9]}/>
+                    </tbody>  
+                </table>
             )
         }
         return (
@@ -61,9 +63,12 @@ class Menu extends Component {
     ScoreListItem = (data) => {
         if(this.state.serverLoaded && data.props && data.props.score) {       
             return(
-                <p>
-                    {data.props.name} ---> {data.props.score} repairs in {data.props.sec} seconds. 
-                </p>
+                <tr>
+                    <th>{data.props.name}</th>
+                    <td> ---> </td>
+                    <td>{data.props.score} repairs </td>
+                    <td> in {data.props.sec} seconds. </td> 
+                </tr>
             )
         }
         return null;
