@@ -189,9 +189,10 @@ class House extends React.Component {
     Howler.volume(0);
     window.clearInterval(this.gameIntervalID);
     window.setTimeout(() => {
-       alert("GAME OVER. Your house has become awful");
-       window.setTimeout(() => {this.props.setGameState('menu');}, 2000);
+       document.getElementById('House-Id').innerHTML = "GAME OVER.&#13;&#10; Your house has become awful.";
+       window.setTimeout(() => {this.props.setGameState('enterScore');}, 2000);
     }, 200);
+    
   }
 
   render() {
@@ -200,7 +201,7 @@ class House extends React.Component {
 
     return (
       <div className='House-plot'>
-        <div className='House-title'>
+        <div className='House-title' id='House-Id'>
           Sweat Equity
         </div>
         <div className='House-score'>

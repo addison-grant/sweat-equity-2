@@ -1,3 +1,5 @@
+//Menu.js made by Jason Iqbal for SweatEquity, a segment of OilyHair.
+
 import React, {Component} from 'react';
 import '../css/Menu.css';
 import logo from '../img/Menu/se1.png';
@@ -20,10 +22,16 @@ class Menu extends Component {
     
     componentDidMount(){
         let db = this.props.db;
-        this.props.client.auth.loginWithCredential(new AnonymousCredential()).then( () => {
-          alert("loaded!");
-        });
-        
+        this.props.client.auth.loginWithCredential(new AnonymousCredential()).then( user => {
+            let scoreCol = db.collection('sweatEquity');
+            scoreCol.find({}).asArray().then((allScores) => {
+                allScores.sort((a, b) => b.score - a.score);
+                this.setState({
+                    globalScores : allScores,
+                    serverLoaded : true
+                })
+            }).catch( error => { console.log(error); });  
+        });  
     }
     
     ScoreList = (props) => {
@@ -32,16 +40,16 @@ class Menu extends Component {
         if(this.state.serverLoaded) {
             return(
                 <div>
-                    <ScoreListItem  props = {props[0]}/>
-                    <ScoreListItem  props = {props[1]}/>
-                    <ScoreListItem  props = {props[2]}/>
-                    <ScoreListItem  props = {props[3]}/>
-                    <ScoreListItem  props = {props[4]}/>
-                    <ScoreListItem  props = {props[5]}/>
-                    <ScoreListItem  props = {props[6]}/>
-                    <ScoreListItem  props = {props[7]}/>
-                    <ScoreListItem  props = {props[8]}/>
-                    <ScoreListItem  props = {props[9]}/>
+                    <ScoreListItem  props = {props.props[0]}/>
+                    <ScoreListItem  props = {props.props[1]}/>
+                    <ScoreListItem  props = {props.props[2]}/>
+                    <ScoreListItem  props = {props.props[3]}/>
+                    <ScoreListItem  props = {props.props[4]}/>
+                    <ScoreListItem  props = {props.props[5]}/>
+                    <ScoreListItem  props = {props.props[6]}/>
+                    <ScoreListItem  props = {props.props[7]}/>
+                    <ScoreListItem  props = {props.props[8]}/>
+                    <ScoreListItem  props = {props.props[9]}/>
                 </div>
             )
         }
@@ -50,11 +58,11 @@ class Menu extends Component {
         )
     }
     
-    ScoreListItem = (props) => {
-        if(this.state.serverLoaded) {       
+    ScoreListItem = (data) => {
+        if(this.state.serverLoaded && data.props && data.props.score) {       
             return(
                 <p>
-                    {props.name} ---> {props.score} repairs in {props.sec} seconds. 
+                    {data.props.name} ---> {data.props.score} repairs in {data.props.sec} seconds. 
                 </p>
             )
         }

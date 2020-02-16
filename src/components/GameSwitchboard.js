@@ -1,19 +1,33 @@
+//GameSwitchboard.js made by Jason Iqbal for SweatEquity, a division of sweatyPits.
+
 import React from 'react';
 import House from './House.js';
 import Menu  from './Menu.js';
 import { 
   Stitch, 
-  RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
+  RemoteMongoClient,
+  AnonymousCredential } from 'mongodb-stitch-browser-sdk';
 
 class GameSwitchboard extends React.Component {
     constructor(props) {
         super(props);
         
         this.client = Stitch.initializeDefaultAppClient('sweatequity-cbpxb');
-        this.db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('highScores');      
+        this.db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('highScores');
+        
     }
   
-    componentDidMount() {
+    submitScoreInfo = (props) => {
+        this.client.auth.loginWithCredential(new AnonymousCredential()).then( user => {
+            let scoreCol = this.db.collection('sweatEquity');
+            scoreCol.insertOne({
+              name  : document.getElementById('scoreName').value,
+              score : this.props.repairs,
+              sec   : this.props.ageScore
+            }).then(() => {
+                this.props.changeGameState('menu');
+            }).catch( error => { console.log(error); });  
+        });     
     }
   
     render() {
@@ -25,13 +39,13 @@ class GameSwitchboard extends React.Component {
         const setAge            = this.props.setAge;
         const clearScore        = this.props.clearScore;
 
-        if(gamestate === 'start'){
+        if(gamestate === 'start') {
             clearScore();
             window.setTimeout(() => { changeGameState('game'); },500);
             return <h1> Ready Start!!! </h1>
         }
         
-        if(gamestate === 'game'){
+        if(gamestate === 'game') {
             return (
                 <House 
                     gamestate = {gamestate} 
@@ -42,6 +56,20 @@ class GameSwitchboard extends React.Component {
                 />
             )
         }
+        
+        if(gamestate === 'enterScore') {
+            return (
+                <div>
+                    <h3> Enter Information </h3>
+                    <label htmlFor="scoreName"> Name: </label>
+                    <input type="text" id="scoreName" name="scoreName"/>
+                    <button type="button" onClick={this.submitScoreInfo}> 
+                        Submit High Score!
+                    </button>
+                </div>
+            )
+        }
+        
         
         // check if previous highscore is higher than new score.
         if(localStorage.highScore && localStorage.highScoreAge){
