@@ -1,3 +1,15 @@
+.Highscore-table {
+    display: inline-block;
+    padding-top: 0px;
+    font-size: 0.83em;
+}
+
+.instructions {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .menu-center {
     display: inline;
     margin-left: auto;
@@ -10,10 +22,4 @@
 
 .team {
     padding-top: 50px;
-}
-
-.instructions {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
 }

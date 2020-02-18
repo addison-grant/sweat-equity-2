@@ -20,9 +20,10 @@ class App extends Component {
     changeGameState = (newstate) => {
         
         console.assert(
-            newstate === 'game' || 
-            newstate === 'menu' ||
-            newstate === 'start'
+            newstate === 'game'  || 
+            newstate === 'menu'  ||
+            newstate === 'start' ||
+            newstate === 'enterScore'
             ,
          "Cannot set game state invalid arg input.");
         this.setState({gamestate: newstate});
