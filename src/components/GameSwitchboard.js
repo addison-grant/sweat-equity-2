@@ -28,7 +28,10 @@ class GameSwitchboard extends React.Component {
             }).then(() => {
                 this.props.changeGameState('menu');
                 this.scoreSubmitted = false;
-            }).catch( error => { console.log(error); });  
+            }).catch( error => { 
+              console.log(error);
+              this.scoreSubmitted = false;
+            });  
         });
       }
     }
