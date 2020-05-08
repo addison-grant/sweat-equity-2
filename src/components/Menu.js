@@ -1,5 +1,3 @@
-//Menu.js made by Jason Iqbal for SweatEquity, a segment of OilyHair.
-
 import React, {Component} from 'react';
 import '../css/Menu.css';
 import logo from '../img/Menu/se1.png';

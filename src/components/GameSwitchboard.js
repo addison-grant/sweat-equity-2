@@ -1,5 +1,3 @@
-//GameSwitchboard.js made by Jason Iqbal for SweatEquity, a division of sweatyPits.
-
 import React from 'react';
 import House from './House.js';
 import Menu  from './Menu.js';
@@ -14,10 +12,13 @@ class GameSwitchboard extends React.Component {
         
         this.client = Stitch.initializeDefaultAppClient('sweatequity-cbpxb');
         this.db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('highScores');
-        
+        this.scoreSubmitted = false;
     }
   
     submitScoreInfo = (props) => {
+      
+      if(!this.scoreSubmitted){
+        this.scoreSubmitted = true;
         this.client.auth.loginWithCredential(new AnonymousCredential()).then( user => {
             let scoreCol = this.db.collection('sweatEquity');
             scoreCol.insertOne({
@@ -26,8 +27,10 @@ class GameSwitchboard extends React.Component {
               sec   : this.props.ageScore
             }).then(() => {
                 this.props.changeGameState('menu');
+                this.scoreSubmitted = false;
             }).catch( error => { console.log(error); });  
-        });     
+        });
+      }
     }
   
     render() {
