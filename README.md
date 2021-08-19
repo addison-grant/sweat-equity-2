@@ -14,3 +14,5 @@ Addison Grant,
 Sterling Hirsh, 
 Jason Iqbal, and
 Bryce Schultz
+
+Game Jam page: https://globalgamejam.org/2019/games/sweat-equity
